@@ -1,0 +1,33 @@
+name: Scraping Morgran Freeman Wiki
+
+on:
+  push:
+    branches:
+    - main
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  scrapemorganfreemaninfo:
+    runs-on: ubuntu-latest
+    permission:
+      contents: write
+    steps:
+    - name: Clone Repository
+      uses: actions/checkout@v3
+    - name: Set up Python environment
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Install dependencies
+      run: pip install requests beautifulsoup4
+    - name: Run Script
+      run: python ScrapeScript.py
+    - name: Push to GitHub
+      run: | 
+        git config --global user.email "nman009@gmail.com"
+        git config --global user.name "nrmnn"
+        git add .
+        git commit -m "Automated Update"
+        Git push
