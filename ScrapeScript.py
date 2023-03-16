@@ -57,7 +57,7 @@ for row in rows:
 for key in personal_info:
     personal_info[key] = personal_info[key].replace('\n', '').replace('\u200b', '').replace('\xa0', '')
 
-with open('Morgan_Freeman_Wiki.html', 'w', encoding='utf-8') as f:
+with open('index.html', 'w', encoding='utf-8') as f:
     html = HTML_TEMPLATE.format(img_url, personal_info['Born'], personal_info['Education'], personal_info['Occupations'], personal_info['Organization'], personal_info['Works'], personal_info['Spouses'], personal_info['Children'], personal_info['Awards'])
     f.write(html)
 
